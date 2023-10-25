@@ -13,7 +13,7 @@
     }
 </script>
 
-<div class="ml-72">
+<div class="">
     <div class="">
         <div class="flex justify-between mb-6">
             <h1 class="font-bold text-2xl mb-4">Order History</h1>

@@ -3,9 +3,7 @@
 </script>
 
 
-
-
-<main class="ml-60 pt-16 max-h-screen overflow-auto">
+<main class="max-h-screen overflow-auto">
   <div class="px-6 py-8">
     <div class="max-w-4xl mx-auto">
       <div>
@@ -13,7 +11,7 @@
         <div class="border-b border-black"></div>
       </div>
       <div class="bg-white rounded-3xl p-8 mb-5">
-        <h1 class="text-3xl font-bold mb-10">Messaging ID framework development for the marketing branch</h1>
+        <h1 class="md:text-3xl text-lg font-bold mb-10">Messaging ID framework development for the marketing branch</h1>
         <div class="flex items-center justify-between">
           <div class="flex items-stretch">
             <div class="text-gray-400 text-xs">Members<br>connected</div>

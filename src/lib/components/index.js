@@ -2,6 +2,10 @@ export { default as TopNav } from "./nav/TopNav.svelte";
 export { default as Logo } from "./nav/Logo.svelte";
 export { default as SecondNav } from "./nav/SecondNav.svelte";
 export { default as Cartpage } from "./nav/cart/Cartpage.svelte";
+export { default as Navigation } from "./nav/navigation/Navigation.svelte";
+
+
+
 export { default as Carousel } from "./Carousel/Carousel.svelte";
 
 export { default as SideNav } from "./shop/SideNav.svelte";
@@ -30,4 +34,7 @@ export { default as Search } from "./utils/input/Search.svelte";
 export { default as Cart } from "./utils/Shoppingcart/Cart.svelte";
 export { default as DropDown } from "./utils/DopDown/DropDown.svelte";
 export { default as CartButton } from "./utils/Shoppingcart/CartButtons.svelte";
+export { default as Hamburger } from "./utils/Hamburger/Hamburger.svelte";
+
+
 export { default as Ruler } from "./Ruler.svelte";

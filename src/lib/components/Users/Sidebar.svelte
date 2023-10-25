@@ -1,15 +1,18 @@
 
-<script>
-  import orderhistory from "$lib/assets/images/orderhistory.png";
-  import whishlist from "$lib/assets/images/wishlist.png";
-  import personaldetails from "$lib/assets/images/personaldetails.png";
-  import Address from "$lib/assets/images/Address.png";
-  import AccountOverview from "$lib/assets/images/AccountOverview.png";
-  import logout from "$lib/assets/images/logout.png";
-</script>
-    <aside class="h-full fixed bg-white shadow-md max-h-screen w-60">
+
+    <script>
+      export let open = false;
+      import orderhistory from "$lib/assets/images/orderhistory.png";
+      import whishlist from "$lib/assets/images/wishlist.png";
+      import personaldetails from "$lib/assets/images/personaldetails.png";
+      import Address from "$lib/assets/images/Address.png";
+      import AccountOverview from "$lib/assets/images/AccountOverview.png";
+      import logout from "$lib/assets/images/logout.png";
+    </script>
+    
+    <aside class="side absolute w-72 h-full bg-white border-r-2 shadow-lg" class:open>
       <div class="flex flex-col justify-between">
-        <div class="flex-grow pt-10">
+        <div class="flex-grow pt-32">
           <div class="px-5  ">
             <h1 class="text-lg font-bold">Account Name</h1>
           </div>
@@ -48,7 +51,7 @@
                 </a>
               </li>
               <li class="">
-                <a href="javascript:void(0)" class="flex gap-4 items-center hover:bg-blue-50 rounded-xl font-semibold text-sm  py-3 px-1">
+                <a href="/" class="flex gap-4 items-center hover:bg-blue-50 rounded-xl font-semibold text-sm  py-3 px-1">
                   <img src="{AccountOverview}" alt="Logo" class="h-6 w-6"/>
                   AccountOverview
                 </a>
@@ -65,3 +68,14 @@
         </div>
       </div>
     </aside>
+    
+    <style>
+      .side {
+        left: -100%;
+        transition: left 0.3s ease-in-out
+      }
+      
+      .open {
+        left: 0
+      }
+    </style>

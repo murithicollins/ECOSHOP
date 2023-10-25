@@ -1,12 +1,12 @@
 <script>
     import "../app.css";
-    import { TopNav } from "$lib/components"
-    import { SecondNav } from "$lib/components";
+    import { Navigation,SecondNav } from "$lib/components"
+    // import { SecondNav } from "$lib/components";
     </script>
     
     <div class="app">
     
-        <TopNav/>
+        <Navigation/>
         <SecondNav/>
     
         <slot />
