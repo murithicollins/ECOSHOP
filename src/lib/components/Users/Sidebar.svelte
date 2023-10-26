@@ -10,7 +10,7 @@
       import logout from "$lib/assets/images/logout.png";
     </script>
     
-    <aside class="side absolute w-72 h-full bg-white border-r-2 shadow-lg" class:open>
+    <aside class="side absolute w-72 md:h-full bg-white border-r-2 shadow-lg" class:open>
       <div class="flex flex-col justify-between">
         <div class="flex-grow pt-32">
           <div class="px-5  ">
@@ -50,13 +50,13 @@
                   Address
                 </a>
               </li>
-              <li class="">
+              <!-- <li class="">
                 <a href="/" class="flex gap-4 items-center hover:bg-blue-50 rounded-xl font-semibold text-sm  py-3 px-1">
                   <img src="{AccountOverview}" alt="Logo" class="h-6 w-6"/>
                   AccountOverview
                 </a>
                 <div class="border-b w-44 border-black my-2"></div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

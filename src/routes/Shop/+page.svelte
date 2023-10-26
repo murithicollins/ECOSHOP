@@ -1,4 +1,13 @@
 <script>
-    import { SideNav } from "$lib/components";
+    import { SideNav,Showfilters,ShopPage } from "$lib/components";
+
+    let menuState=false;
 </script>
-<SideNav/>
+<Showfilters on:toggle={()=>{menuState=!menuState}}/>
+
+<div class="flex">
+    <div class="absolute md:relative top-52 md:top-0 left-0 right-0 z-40 {menuState?'block ':'hidden md:block'}">
+        <SideNav/>
+    </div>
+    <ShopPage/>
+</div>

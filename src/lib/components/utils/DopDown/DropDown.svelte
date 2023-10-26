@@ -7,7 +7,7 @@
 
     import Account from "$lib/assets/images/Account.png";
 </script>
-<div class="flex">
+<div class="flex gap-4">
   <button class=""on:click={toggleDropdown}>
     <div class="flex md:mb-4 mb-0">
       <img src={Account} alt="Logo" class="h-8 w-8"/>

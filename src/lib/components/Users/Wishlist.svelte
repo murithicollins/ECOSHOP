@@ -2,7 +2,7 @@
 
 </script>
 
-<main class="ml-60 pt-16 max-h-screen overflow-auto">
+<main class="pt-16 max-h-screen overflow-auto">
     <div class="px-6 py-8">
       <div class="max-w-4xl mx-auto">
         <div>

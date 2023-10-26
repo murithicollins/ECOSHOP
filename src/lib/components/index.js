@@ -10,6 +10,9 @@ export { default as Carousel } from "./Carousel/Carousel.svelte";
 
 export { default as SideNav } from "./shop/SideNav.svelte";
 export { default as ShopPage } from "./shop/ShopPage.svelte";
+export { default as Dropdown } from "./shop/Dropdown.svelte";
+export { default as Pricerange } from "./shop/Pricerange.svelte";
+
 
 export { default as ShopPower } from "./Categories/ShopPower.svelte";
 export { default as Popular } from "./Categories/Popular.svelte";
@@ -35,6 +38,8 @@ export { default as Cart } from "./utils/Shoppingcart/Cart.svelte";
 export { default as DropDown } from "./utils/DopDown/DropDown.svelte";
 export { default as CartButton } from "./utils/Shoppingcart/CartButtons.svelte";
 export { default as Hamburger } from "./utils/Hamburger/Hamburger.svelte";
+export { default as Showfilters } from "./utils/widgets/Showfilters.svelte";
+// export { default as Hidefilters } from "./utils/widgets/Hidefilters.svelte";
 
 
 export { default as Ruler } from "./Ruler.svelte";
