@@ -29,7 +29,7 @@ let Categories = [
     <div class="my-4">
         <h1 class="font-bold text-lg">Popular Categories</h1>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div class="grid md:grid-cols-5 grid-cols-2">
         {#each Categories as category (category.title)}
         <div class="flex flex-col items-center">
             <div class="bg-blue-200 p-16 w-20 h-20 rounded-full relative flex items-center justify-center">
