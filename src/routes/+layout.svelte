@@ -5,10 +5,9 @@
     </script>
     
     <div class="app">
-    
-        <Navigation/>
-        <SecondNav/>
-    
+        <div class="mb-56">
+            <Navigation/>
+        </div>    
         <slot />
     
     </div>
