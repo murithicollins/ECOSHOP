@@ -1,17 +1,17 @@
 <script>
-    import "../app.css";
-    import { Navigation,SecondNav } from "$lib/components"
-    // import { SecondNav } from "$lib/components";
-    </script>
-    
-    <div class="app">
-        <div class="mb-56">
-            <Navigation/>
-        </div>    
-        <slot />
-    
-    </div>
-    
-    <style>
-    
-    </style>
+  import "../app.css";
+  import { Navigation, SecondNav } from "$lib/components";
+  // import { SecondNav } from "$lib/components"
+  import { SvelteToast } from "@zerodevx/svelte-toast";
+</script>
+
+<div class="app">
+  <SvelteToast />
+  <div class="mb-56">
+    <Navigation />
+  </div>
+  <slot />
+</div>
+
+<style>
+</style>
