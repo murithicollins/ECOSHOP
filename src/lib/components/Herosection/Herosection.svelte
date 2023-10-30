@@ -9,7 +9,7 @@
       <div class="my-20">
         <h1 class="text-lg md:text-3xl font-bold">Every tool to get the job done.<br>#HeresToHome<br></h1>
         <p>Valid from 3 October - 27 November 2023</p>
-        <button class="md:my-12 my-6 bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full">
+        <button class="md:my-12 my-6 bg-transparent text-black font-semibold py-2 px-4 border border-black rounded-full">
           Button
         </button>
       </div>
