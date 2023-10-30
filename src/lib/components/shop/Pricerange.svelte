@@ -17,5 +17,5 @@ onMount(() => {
     <h1>0</h1>
     <h1>1000</h1>
   </div>
-  <input class="w-full" type="range"bind:value={price} min="0"max="1000"step="1"on:input={updatePrice}/>
+  <input class="w-full bg-black" type="range"bind:value={price} min="0"max="1000"step="1"on:input={updatePrice}/>
 </div>
