@@ -3,6 +3,7 @@ export { default as Logo } from "./nav/Logo.svelte";
 export { default as SecondNav } from "./nav/SecondNav.svelte";
 export { default as Cartpage } from "./nav/cart/Cartpage.svelte";
 export { default as Navigation } from "./nav/navigation/Navigation.svelte";
+export { default as mediaquerynav } from "./nav/mediaquerynav.svelte";
 
 
 
