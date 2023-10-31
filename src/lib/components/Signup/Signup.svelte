@@ -31,7 +31,7 @@
       });
       console.log(authData);
     } catch (error) {
-      console.log(error.error.details);
+      console.log(error);
     }
   }
 </script>
@@ -44,7 +44,7 @@
     style="max-width:1000px"
   >
     <div class="md:flex w-full">
-      <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+      <div class="hidden md:block w-1/2 bg-orange-100 py-10 px-10">
         <svg
           id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641"
           data-name="Layer 1"
@@ -281,7 +281,8 @@
           </div>
           <div class="flex -mx-3">
             <div class="w-full px-3 mb-5">
-              <label for="phone" class="text-xs font-semibold px-1">Phone</label
+              <label for="" class="text-xs font-semibold px-1"
+                >Phone Number</label
               >
               <div class="flex">
                 <div
@@ -320,7 +321,7 @@
             <div class="w-full px-3 mb-5">
               <button
                 on:click|preventDefault={register}
-                class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                class="block w-full max-w-xs mx-auto bg-black text-white rounded-lg px-3 py-3 font-semibold"
                 >REGISTER NOW</button
               >
             </div>
