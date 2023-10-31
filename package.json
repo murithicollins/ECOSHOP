@@ -12,6 +12,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@zerodevx/svelte-toast": "^0.9.5",
 		"autoprefixer": "^10.4.16",
 		"postcss": "^8.4.31",
 		"svelte": "^4.0.5",
@@ -22,6 +23,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"axios": "^1.6.0",
 		"flowbite-svelte": "^0.44.18",
 		"svelte-heros-v2": "^0.10.12"
 	}
