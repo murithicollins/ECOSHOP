@@ -28,7 +28,7 @@ export let sidebar = false
         <Search/>
       </div>
       <div class="">
-        <div class="mt-6">
+        <div class="mt-7">
           <Cart/>
         </div>
       </div>
@@ -38,8 +38,8 @@ export let sidebar = false
         </div>
       </div>
       <a class="mt-6" href="/Login">
-        <div class="flex justify-center">
-          <img src="{login}" alt="Logo" class="h-10 w-10"/>
+        <div class="flex justify-center md:mt-2 mt-0">
+          <img src="{login}" alt="Logo" class="md:h-10 h-8 md:w-10 w-8"/>
           <h1 class="font-bold my-1 md:flex hidden">Login</h1>
         </div>
       </a>
