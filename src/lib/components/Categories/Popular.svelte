@@ -42,12 +42,8 @@
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
     {#each Categories as category (category.title)}
       <div class="flex flex-col items-center">
-        <div class="bg-blue-200 p-16 w-20 h-20 rounded-full relative flex items-center justify-center">
-          <img
-            src={category.image}
-            alt="Centered Image"
-            class="w-14 h-14 absolute"
-          />
+        <div class="bg-blue-200  p-16 w-20 h-20 rounded-full relative flex items-center justify-center">
+          <img src={category.image} alt="Centered Image"class="w-14 h-14 absolute"/>
         </div>
         <div class="my-4">
           <h1 class="font-bold text-lg">{category.title}</h1>

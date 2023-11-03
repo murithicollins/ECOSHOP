@@ -51,7 +51,7 @@
     <div class="my-4">
       <h1 class="font-bold text-lg">Shop Power Tools</h1>
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-10 gap-2">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-10 gap-2 ">
         {#each otherData as product (product.id)}
           <div class="flex md:w-full w-44 md:h-full h-80 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a class="flex  items-center" href="#">
