@@ -1,6 +1,6 @@
 
 <script>
-import { Pricerange,Dropdown,ShopPage} from "$lib/components";
+import { Pricerange,Dropdown,} from "$lib/components";
 
 
 </script>
