@@ -1,6 +1,7 @@
 <script>
-import { Logo,Search,Cart,Account,Hamburger,SecondNav } from '$lib/components';
+import { Logo,Search,Cart,Account,Hamburger,SecondNav,mediaquerynav } from '$lib/components';
 import login from "$lib/assets/images/login.png";
+    import Mediaquerynav from './mediaquerynav.svelte';
 export let sidebar = false
 </script>
 
@@ -18,17 +19,17 @@ export let sidebar = false
       <SecondNav/>
     </div>
     <!-- search -->
-    <div>
+    <!-- <div>
       <Search/>
-    </div>
+    </div> -->
     <!--shoppingcart-->
-    <div class="flex gap-20">
+    <div class="flex md:gap-20 gap-2">
+      <div class="mt-2">
+        <Search/>
+      </div>
       <div class="">
-        <div class="mt-6">
+        <div class="mt-7">
           <Cart/>
-        </div>
-        <div class="flex justify-center items-center rounded-full px-2 absolute left-4 md:left-4 top-0 bg-[#E6242B] text-white">
-          <!-- {$itemCount} -->
         </div>
       </div>
       <div class="flex gap-4 mb-4 md:mb-0">
@@ -37,12 +38,13 @@ export let sidebar = false
         </div>
       </div>
       <a class="mt-6" href="/Login">
-        <div class="flex justify-center">
-          <img src="{login}" alt="Logo" class="h-10 w-10"/>
+        <div class="flex justify-center md:mt-2 mt-0">
+          <img src="{login}" alt="Logo" class="md:h-10 h-8 md:w-10 w-8"/>
           <h1 class="font-bold my-1 md:flex hidden">Login</h1>
         </div>
       </a>
     </div>
   </div>
+  <Mediaquerynav/>
 </header>   
 
