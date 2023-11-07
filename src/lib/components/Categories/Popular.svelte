@@ -2,6 +2,7 @@
   import { Ruler } from "$lib/components";
   import { categories, getCategories } from "../../../store/categories";
   import { onMount } from "svelte";
+  let baseApiUrl = import.meta.env.VITE_BASE_URL;
 
   onMount(() => {
     getCategories();
@@ -42,24 +43,19 @@
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
   >
-    <!-- {#each $categories as cat}
-      <p>
-        {cat.attributes.categoryName}
-      </p>
-    {/each} -->
-    {#each Categories as category (category.title)}
+    {#each $categories as cat (cat.attributes.categoryName)}
       <div class="flex flex-col items-center">
         <div
-          class="bg-blue-200 p-16 w-20 h-20 rounded-full relative flex items-center justify-center"
+          class="bg-blue-200 overflow-hidden border-2 border-gray-300 w-28 h-28 rounded-full relative flex items-center justify-center"
         >
           <img
-            src={category.image}
+            src={baseApiUrl + cat.attributes.image.data.attributes.url}
             alt="Centered Image"
-            class="w-14 h-14 absolute"
+            class=" object-cover w-full h-full unded-full"
           />
         </div>
         <div class="my-4">
-          <h1 class="font-bold text-lg">{category.title}</h1>
+          <h1 class="font-bold text-lg">{cat.attributes.categoryName}</h1>
         </div>
       </div>
     {/each}

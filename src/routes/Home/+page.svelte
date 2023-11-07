@@ -1,11 +1,17 @@
 <script>
-    import { CookingAppliance, Herosection, Popular,ShopPower,WhyShop,Aircons } from "$lib/components";
+  import {
+    CookingAppliance,
+    Herosection,
+    Popular,
+    ShopPower,
+    WhyShop,
+    Aircons,
+  } from "$lib/components";
 </script>
 
-<Herosection/>
-<Popular/>
-<ShopPower/>
-<WhyShop/>
-<CookingAppliance/>
-<Aircons/>
-
+<Herosection />
+<Popular />
+<ShopPower />
+<WhyShop />
+<CookingAppliance />
+<Aircons />
