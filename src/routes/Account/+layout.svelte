@@ -1,12 +1,11 @@
 <script>
-    import { Sidebar,Ruler } from "$lib/components"
+  import { Sidebar, Ruler } from "$lib/components";
 </script>
 
 <div class="mt-24">
-    <Ruler>
-        <Sidebar/>
-    
-        <slot/>
-    </Ruler>
-</div>
+  <Ruler>
+    <Sidebar />
 
+    <slot />
+  </Ruler>
+</div>
