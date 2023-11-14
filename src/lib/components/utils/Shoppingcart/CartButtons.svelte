@@ -12,7 +12,7 @@
   }
   // export let button = 'button value';
   export let customClasses =
-    "w-full flex items-center justify-center rounded border-2 text-orange-400 border-orange-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-orange-400 hover:text-white focus:outline-none ";
+    "w-full flex items-center justify-center rounded border-2 text-orange-400 border-orange-400 px-5 py-2.5 text-center text-sm font-medium text-orange-400 hover:bg-orange-400 hover:text-white focus:outline-none ";
 </script>
 
 <button class={customClasses} on:click={addToCartBtn}>
