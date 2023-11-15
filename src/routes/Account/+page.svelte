@@ -1,5 +1,5 @@
 <script>
-import { Order } from "$lib/components"
+  import { Order } from "$lib/components";
 </script>
 
-<Order/>
+<Order />

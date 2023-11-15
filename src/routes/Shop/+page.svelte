@@ -1,13 +1,23 @@
 <script>
-    import { SideNav,Showfilters,ShopPage } from "$lib/components";
+  import { SideNav, Showfilters, ShopPage } from "$lib/components";
 
-    let menuState=false;
+  let menuState = false;
 </script>
-<Showfilters on:toggle={()=>{menuState=!menuState}}/>
 
-<div class="flex">
-    <div class="absolute md:relative md:top-0 left-0 right-0 z-40 {menuState?'block ':'hidden md:block'}">
-        <SideNav/>
-    </div>
-    <ShopPage/>
+<div>
+  <Showfilters
+    on:toggle={() => {
+      menuState = !menuState;
+    }}
+  />
+</div>
+<div class="flex justify-between gap-11">
+  <div
+    class="absolute md:relative md:top-0 left-0 right-0 z-40 {menuState
+      ? 'block '
+      : 'hidden md:block'}"
+  >
+    <SideNav />
+  </div>
+  <ShopPage />
 </div>

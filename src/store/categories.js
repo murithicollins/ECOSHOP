@@ -1,15 +1,21 @@
 import { writable } from "svelte/store";
-import api from "$lib/api";
 
 export const categories = writable([]);
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
+
 export async function getCategories() {
-  try {
-    const response = await api.get("/api/categories?populate[0]=image");
-    // console.log(response.data.data);
-    categories.set(response.data.data);
-  } catch (error) {
-    console.log(error);
-    throw error;
+  const response = await fetch(
+    `${API_BASE_URL}/api/categories?populate[0]=image`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (response.ok) {
+    const { data } = await response.json();
+    categories.set(data);
   }
 }

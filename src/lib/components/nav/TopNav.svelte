@@ -1,50 +1,61 @@
 <script>
-import { Logo,Search,Cart,Account,Hamburger,SecondNav,mediaquerynav } from '$lib/components';
-import login from "$lib/assets/images/login.png";
-    import Mediaquerynav from './mediaquerynav.svelte';
-export let sidebar = false
+  import {
+    Logo,
+    Search,
+    Cart,
+    Account,
+    Hamburger,
+    SecondNav,
+    mediaquerynav,
+  } from "$lib/components";
+  import login from "$lib/assets/images/login.png";
+  import Mediaquerynav from "./mediaquerynav.svelte";
+  export let sidebar = false;
 </script>
 
-<header class="bg-slate-200	 z-50 top-0 fixed w-full">
-  <div class="container mx-auto px-4 py-2 flex items-center ">
+<header class="bg-slate-200 z-50 top-0 fixed w-full">
+  <div class="container mx-auto py-3 flex items-center">
     <!-- <sidebar> -->
-      <nav class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2">
-        <Hamburger bind:open={sidebar}/>
-      </nav>
-      <!-- logo -->
+    <nav
+      class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2"
+    >
+      <Hamburger bind:open={sidebar} />
+    </nav>
+    <!-- logo -->
     <div class="mr-auto md:w-48 flex-shrink-0">
-    <Logo/>
+      <Logo />
     </div>
     <div>
-      <SecondNav/>
+      <SecondNav />
     </div>
     <!-- search -->
     <!-- <div>
       <Search/>
     </div> -->
     <!--shoppingcart-->
-    <div class="flex md:gap-20 gap-2">
-      <div class="mt-2">
-        <Search/>
+    <div class="flex items-center md:gap-20 gap-2">
+      <div class="">
+        <Search />
       </div>
       <div class="">
-        <div class="mt-7">
-          <Cart/>
+        <div class="">
+          <Cart />
         </div>
       </div>
-      <div class="flex gap-4 mb-4 md:mb-0">
+      <div class="flex gap-4">
         <div>
-          <Account/>
+          <Account />
         </div>
       </div>
-      <a class="mt-6" href="/Login">
-        <div class="flex justify-center md:mt-2 mt-0">
-          <img src="{login}" alt="Logo" class="md:h-10 h-8 md:w-10 w-8"/>
-          <h1 class="font-bold my-1 md:flex hidden">Login</h1>
-        </div>
-      </a>
+      <div>
+        <a class="" href="/Login">
+          <div class="flex justify-center items-center">
+            <img src={login} alt="Logo" class="md:h-10 h-8 md:w-10 w-8" />
+            <h1 class="font-bold md:flex hidden">Login</h1>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-  <Mediaquerynav/>
-</header>   
-
+  <Mediaquerynav />
+</header>

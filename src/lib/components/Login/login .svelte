@@ -1,6 +1,6 @@
 <script>
-  import api from "$lib/api";
   import { toast } from "@zerodevx/svelte-toast";
+
   let email = "";
   let password = "";
 
@@ -11,94 +11,104 @@
     if (password === "") {
       toast.push("password is required");
     }
-    try {
-      const authData = await api.post("/auth/local", {
+
+    const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
+
+    const response = await fetch(`${API_BASE_URL}/api/auth/local`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         identifier: email,
         password: password,
-      });
-      console.log(authData);
-    } catch (error) {
-      console.log(error);
+      }),
+    });
+
+    if (response.ok) {
+      const { jwt, user } = await response.json();
+
+      sessionStorage.setItem("access_token", jwt);
+      sessionStorage.setItem("user", user);
     }
   }
 </script>
 
-<section class="bg-gray-50">
+<div
+  class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+>
   <div
-    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+    class="w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-orange-50 dark:border-gray-700"
   >
-    <div
-      class="w-full rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 bg-orange-100 dark:border-gray-700"
-    >
-      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1
-          class="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl"
-        >
-          Login in to your account
-        </h1>
-        <form class="space-y-4 md:space-y-6" action="#">
-          <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-black"
-              >Your email</label
-            >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@company.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-black">Password</label
-            >
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="remember"
-                  aria-describedby="remember"
-                  type="checkbox"
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                  required
-                />
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="remember" class="text-black">Remember me</label>
-              </div>
-            </div>
-            <a
-              href="#"
-              class="text-sm font-medium text-primary-600 hover:underline"
-              >Forgot password?</a
-            >
-          </div>
-          <button
-            type="submit"
-            class="w-full text-white bg-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-            on:click={login}>Sign in</button
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl"
+      >
+        Login in to your account
+      </h1>
+      <form class="space-y-4 md:space-y-6">
+        <div>
+          <label for="email" class="block mb-2 text-sm font-medium text-black"
+            >Your email</label
           >
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Don’t have an account yet? <a
-              href="/Signup"
-              class="font-medium text-black hover:underline dark:text-primary-500"
-              >Sign up</a
-            >
-          </p>
-        </form>
-      </div>
+          <input
+            bind:value={email}
+            type="email"
+            name="email"
+            id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:outline-none rounded block w-full p-2.5"
+            placeholder="name@company.com"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-black">Password</label
+          >
+          <input
+            bind:value={password}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="••••••••"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded focus:outline-none block w-full p-2.5"
+            required
+          />
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input
+                id="remember"
+                aria-describedby="remember"
+                type="checkbox"
+                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+              />
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="remember" class="text-black">Remember me</label>
+            </div>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-medium text-primary-600 hover:underline"
+            >Forgot password?</a
+          >
+        </div>
+        <button
+          type="submit"
+          class="w-full text-white bg-orange-400 font-medium rounded text-sm px-5 py-2.5 text-center"
+          on:click={login}>Sign in</button
+        >
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+          Don’t have an account yet? <a
+            href="/Signup"
+            class="font-medium text-black hover:underline dark:text-primary-500"
+            >Sign up</a
+          >
+        </p>
+      </form>
     </div>
   </div>
-</section>
+</div>
