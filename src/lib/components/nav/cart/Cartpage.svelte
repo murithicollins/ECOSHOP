@@ -48,7 +48,7 @@
           items: itemsId,
           status: "COMPLETE",
           paymentStatus: "PAID",
-          totalPrice: total + 499,
+          totalPrice: total + 1,
           moreDetails: $cart,
         },
       }),
