@@ -1,18 +1,17 @@
 
 
     <script>
-      export let open = false;
+      // export let open = false;
       import orderhistory from "$lib/assets/images/orderhistory.png";
       import whishlist from "$lib/assets/images/wishlist.png";
       import personaldetails from "$lib/assets/images/personaldetails.png";
       import Address from "$lib/assets/images/Address.png";
-      import AccountOverview from "$lib/assets/images/AccountOverview.png";
       import logout from "$lib/assets/images/logout.png";
     </script>
     
-    <aside class="side absolute z-30 w-72 md:h-full bg-white border-r-2 shadow-lg" class:open>
+    <aside class="mt-24 hidden md:flex w-72 md:h-full bg-white border-r-2 shadow-lg">
       <div class="flex flex-col justify-between">
-        <div class="flex-grow pt-32">
+        <div class="flex-grow">
           <div class="px-5  ">
             <h1 class="text-lg font-bold">Account Name</h1>
           </div>
@@ -50,13 +49,6 @@
                   Address
                 </a>
               </li>
-              <!-- <li class="">
-                <a href="/" class="flex gap-4 items-center hover:bg-blue-50 rounded-xl font-semibold text-sm  py-3 px-1">
-                  <img src="{AccountOverview}" alt="Logo" class="h-6 w-6"/>
-                  AccountOverview
-                </a>
-                <div class="border-b w-44 border-black my-2"></div>
-              </li> -->
             </ul>
           </div>
         </div>
@@ -69,7 +61,7 @@
       </div>
     </aside>
     
-    <style>
+    <!-- <style>
       .side {
         left: -100%;
         transition: left 0.3s ease-in-out
@@ -78,4 +70,4 @@
       .open {
         left: 0
       }
-    </style>
+    </style> -->

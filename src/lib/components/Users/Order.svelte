@@ -3,8 +3,8 @@
 </script>
 
 
-<main class="max-h-screen overflow-auto">
-  <div class="px-6 py-8">
+<main class="ml-24 mx-24 h-full overflow-auto">
+  <div class=" py-8">
     <div class="max-w-4xl mx-auto">
       <div>
         <h1 class="font-bold text-2xl mb-4">Order History</h1>

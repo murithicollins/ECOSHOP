@@ -9,7 +9,7 @@
 </script>
 <div class="flex gap-4">
   <button class=""on:click={toggleDropdown}>
-    <div class="flex md:mb-4 mb-0 mt-1 md:mt-0">
+    <div class="flex md:mb-4 mb-6">
       <img src={Account} alt="Logo" class="md:h-10 h-6 md:w-10 w-6"/>
       <div class="px-2 py-2 text-sm font-medium text-black rounded-md md:flex hidden ">Account</div>
     </div>

@@ -4,5 +4,5 @@
     let open = false
 </script>
 
-<Sidebar bind:open/>
-<TopNav bind:sidebar={open}/>
+<!-- <Sidebar /> -->
+<TopNav />
