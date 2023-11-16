@@ -63,103 +63,106 @@
   }
 
   function completeOrder() {
-    if (token === null) goto("/Login");
-    if ($cart.length < 1) {
-      goto("/Shop");
-      toast.push("You Have no items to purchase");
-      return;
+    if (token === null) {
+      goto("/Login");
     } else {
-      paymentInitiated = true;
-      loading = true;
-      succes = false;
-      failed = false;
+      if ($cart.length < 1) {
+        goto("/Shop");
+        toast.push("You Have no items to purchase");
+        return;
+      } else {
+        paymentInitiated = true;
+        loading = true;
+        succes = false;
+        failed = false;
 
-      axios
-        .post(
-          tinyPesaUrl,
-          {
-            amount: total + 1,
-            msisdn: "0759175137",
-            account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
-          },
-          {
-            headers: {
-              ApiKey: import.meta.env.VITE_TINYPESA_API_KEY,
-              "Content-Type": "application/x-www-form-urlencoded",
+        axios
+          .post(
+            tinyPesaUrl,
+            {
+              amount: total + 1,
+              msisdn: "0759175137",
+              account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
             },
-          }
-        )
-        .then((res) => {
-          // console.log(res);
-          localStorage.setItem("request_id", res.data.request_id);
-          // request_id = res.data.request_id;
-        })
-        .catch((err) => {
-          console.log(err);
+            {
+              headers: {
+                ApiKey: import.meta.env.VITE_TINYPESA_API_KEY,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+            }
+          )
+          .then((res) => {
+            // console.log(res);
+            localStorage.setItem("request_id", res.data.request_id);
+            // request_id = res.data.request_id;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        // initiate a transaction using tinypesa
+        const socket = io(import.meta.env.VITE_BASE_URL, {
+          reconnection: true, // Enable reconnection
+          reconnectionAttempts: 10, // Number of reconnection attempts
+          reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
+        });
+        socket.on("connect", () => {
+          console.log("Connected to the server");
+          resetConnectionTimeout(); // Start the connection timeout timer
         });
 
-      // initiate a transaction using tinypesa
-      const socket = io(import.meta.env.VITE_BASE_URL, {
-        reconnection: true, // Enable reconnection
-        reconnectionAttempts: 10, // Number of reconnection attempts
-        reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
-      });
-      socket.on("connect", () => {
-        console.log("Connected to the server");
-        resetConnectionTimeout(); // Start the connection timeout timer
-      });
+        const connectionTimeout = 60000; // 10 minutes (in milliseconds)
+        let timeoutId;
 
-      const connectionTimeout = 60000; // 10 minutes (in milliseconds)
-      let timeoutId;
+        function handleConnectionTimeout() {
+          // Perform actions when the connection times out
+          // console.log("Connection timed out due to inactivity.");
+          socket.disconnect(); // Close the connection
+        }
+        function resetConnectionTimeout() {
+          clearTimeout(timeoutId); // Clear the previous timeout (if any)
+          timeoutId = setTimeout(handleConnectionTimeout, connectionTimeout); // Set a new timeout
+        }
 
-      function handleConnectionTimeout() {
-        // Perform actions when the connection times out
-        // console.log("Connection timed out due to inactivity.");
-        socket.disconnect(); // Close the connection
+        socket.on("connect", () => {
+          console.log("Connected to the server");
+          resetConnectionTimeout(); // Start the connection timeout timer
+        });
+        socket.on("completedTrasaction", (data) => {
+          // console.log(data);
+          if (data.request_id === localStorage.getItem("request_id")) {
+            // alert("Transaction Completed");
+            loading = false;
+            succes = true;
+          }
+          createOrder();
+          localStorage.clear();
+
+          resetConnectionTimeout();
+        });
+        socket.on("failedTransaction", (data) => {
+          // console.log(data);
+          if (data.request_id === localStorage.getItem("request_id")) {
+            // alert("Transaction Failed");
+            loading = false;
+            failed = true;
+          }
+          localStorage.clear();
+
+          resetConnectionTimeout();
+        });
+
+        socket.on("disconnect", (reason) => {
+          // console.log(`Disconnected from the server. Reason: ${reason}`);
+          clearTimeout(timeoutId); // Clear the timeout when the connection is closed
+        });
+
+        onDestroy(() => {
+          if (socket) {
+            socket.close();
+          }
+        });
       }
-      function resetConnectionTimeout() {
-        clearTimeout(timeoutId); // Clear the previous timeout (if any)
-        timeoutId = setTimeout(handleConnectionTimeout, connectionTimeout); // Set a new timeout
-      }
-
-      socket.on("connect", () => {
-        console.log("Connected to the server");
-        resetConnectionTimeout(); // Start the connection timeout timer
-      });
-      socket.on("completedTrasaction", (data) => {
-        // console.log(data);
-        if (data.request_id === localStorage.getItem("request_id")) {
-          // alert("Transaction Completed");
-          loading = false;
-          succes = true;
-        }
-        createOrder();
-        localStorage.clear();
-
-        resetConnectionTimeout();
-      });
-      socket.on("failedTransaction", (data) => {
-        // console.log(data);
-        if (data.request_id === localStorage.getItem("request_id")) {
-          // alert("Transaction Failed");
-          loading = false;
-          failed = true;
-        }
-        localStorage.clear();
-
-        resetConnectionTimeout();
-      });
-
-      socket.on("disconnect", (reason) => {
-        // console.log(`Disconnected from the server. Reason: ${reason}`);
-        clearTimeout(timeoutId); // Clear the timeout when the connection is closed
-      });
-
-      onDestroy(() => {
-        if (socket) {
-          socket.close();
-        }
-      });
     }
   }
 
