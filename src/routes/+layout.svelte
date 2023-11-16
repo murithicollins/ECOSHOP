@@ -7,7 +7,7 @@
 
 <div class="app">
   <SvelteToast />
-  <div class="pt-52">
+  <div class="md:pt-52 pt-[8rem]">
     <Navigation />
   </div>
   <slot />

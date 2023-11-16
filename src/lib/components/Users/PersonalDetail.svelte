@@ -4,7 +4,7 @@
 
 
 
-<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 ">
+<div class="mx-auto w-full md:max-w-screen-xl px-4 md:py-16 py-4 sm:px-6 lg:px-8 ">
     <div class="mx-auto max-w-lg">
       <div class="mt-6"> 
         <h1 class="font-bold text-2xl mb-4">Order History</h1>
