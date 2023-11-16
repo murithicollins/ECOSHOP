@@ -36,7 +36,6 @@
       toast.push("You Have no items to purchase");
       goto("/Shop");
     }
-    console.log();
     await fetch(`${baseApiUrl}/api/orders`, {
       method: "POST",
       headers: {
