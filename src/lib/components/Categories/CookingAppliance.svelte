@@ -1,4 +1,4 @@
-
+<!--
 <script>
 
     import { Ruler,CartButton } from "$lib/components";
@@ -46,7 +46,7 @@
       },
     ]
 </script>
-  
+
 
 <Ruler>
   <div class="my-4">
@@ -72,4 +72,4 @@
   </div>
 </Ruler>
 
-  
+   -->

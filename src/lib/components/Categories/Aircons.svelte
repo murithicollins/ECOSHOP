@@ -12,7 +12,7 @@
 
 <Ruler>
   <div class="mb-4">
-    <h1 class="font-bold text-lg">Shop Power Tools</h1>
+    <h1 class="font-bold text-lg">Buy More Materials</h1>
   </div>
 
   <div class="flex flex-wrap gap-5 justify-between">

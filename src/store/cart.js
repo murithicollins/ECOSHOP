@@ -8,7 +8,7 @@ export const cart = writable([]);
 // @ts-ignore
 export const addToCart = (item) => {
   cart.update((cartItems) => [...cartItems, { item, qty: 1 }]);
-  // console.log(initialCart);
+  // console.log(item);
 };
 
 export const updateQuantity = (itemId, quantityChange) => {

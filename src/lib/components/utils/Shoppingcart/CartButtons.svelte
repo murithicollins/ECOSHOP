@@ -1,5 +1,5 @@
 <script>
-  import { addToCart } from "../../../../store/cart";
+  import { addToCart, cart } from "../../../../store/cart";
 
   // @ts-ignore
   export let item;
@@ -8,7 +8,7 @@
   export async function addToCartBtn() {
     // @ts-ignore
     addToCart(item);
-    // console.log(item);
+    // console.log($cart);
   }
   // export let button = 'button value';
   export let customClasses =

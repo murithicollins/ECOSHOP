@@ -1,4 +1,7 @@
 <script>
-import { Aircons } from "$lib/components";
+  import { Aircons } from "$lib/components";
 </script>
-<Aircons/>
+
+<div class="pt-52">
+  <Aircons />
+</div>

@@ -14,5 +14,5 @@
 <Popular />
 <ShopPower />
 <WhyShop />
-<CookingAppliance />
+<!-- <CookingAppliance /> -->
 <Aircons />

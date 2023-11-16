@@ -10,14 +10,16 @@
   } from "$lib/components";
   import login from "$lib/assets/images/login.png";
   import Mediaquerynav from "./mediaquerynav.svelte";
-  // export let sidebar = false;
+  export let sidebar = false;
 </script>
 
-<header class="bg-slate-200 z-50 top-0 fixed w-full">
+<header class="bg-orange-50 z-50 top-0 fixed w-full">
   <div class="container mx-auto py-3 flex items-center">
     <!-- <sidebar> -->
-    <nav class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2">
-      <Hamburger/>
+    <nav
+      class="flex justify-between bg-orange-50 mx-5 md:hidden items-center text-gray-600 border-b-2"
+    >
+      <Hamburger />
     </nav>
     <!-- logo -->
     <div class="mr-auto md:w-48 flex-shrink-0">
