@@ -17,7 +17,6 @@
   <div class="container mx-auto py-3 flex items-center">
     <!-- <sidebar> -->
     <nav class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2">
-      <!-- <Hamburger bind:open={sidebar} /> -->
       <Hamburger/>
     </nav>
     <!-- logo -->
