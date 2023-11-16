@@ -119,7 +119,7 @@
   }
 </script>
 
-<div class="h-screen w-full relative">
+<div class=" pt-52 h-screen w-full relative">
   <!-- state modals -->
   {#if paymentInitiated}
     <div class="w-full">

@@ -13,7 +13,7 @@
 </div>
 <div class="flex justify-between gap-11">
   <div
-    class="absolute md:relative md:top-0 left-0 right-0 z-40 {menuState
+    class="absolute pt-52 md:relative md:top-0 left-0 right-0 z-40 {menuState
       ? 'block '
       : 'hidden md:block'}"
   >

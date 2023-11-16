@@ -17,5 +17,6 @@ export async function getCategories() {
   if (response.ok) {
     const { data } = await response.json();
     categories.set(data);
+    return data;
   }
 }
