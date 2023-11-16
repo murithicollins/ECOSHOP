@@ -28,11 +28,7 @@
     <div>
       <SecondNav />
     </div>
-    <!-- search -->
-    <!-- <div>
-      <Search/>
-    </div> -->
-    <!--shoppingcart-->
+
     <div class="flex items-center md:gap-20 gap-2">
       <div class="">
         <Search />

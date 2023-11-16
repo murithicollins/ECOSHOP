@@ -6,6 +6,7 @@
     ShopPower,
     WhyShop,
     Aircons,
+    // Sidebar,
   } from "$lib/components";
 </script>
 
