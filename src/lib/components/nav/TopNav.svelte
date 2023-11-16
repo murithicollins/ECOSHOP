@@ -36,7 +36,7 @@
           <Cart />
         </div>
       </div>
-      <div class="flex gap-4">
+      <div class="">
         <div>
           <Account />
         </div>
