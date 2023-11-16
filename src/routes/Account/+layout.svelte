@@ -5,7 +5,9 @@
 <div class="">
   <Ruler>
     <div class="flex">
-      <Sidebar/>
+      <div class="hidden md:block">
+        <Sidebar/>
+      </div>
       <slot />
     </div>
   </Ruler>

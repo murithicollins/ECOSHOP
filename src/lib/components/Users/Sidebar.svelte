@@ -9,7 +9,7 @@
       import logout from "$lib/assets/images/logout.png";
     </script>
     
-    <aside class="mt-24 hidden md:flex w-72 md:h-full bg-white border-r-2 shadow-lg">
+    <aside class="mt-24  w-72 md:h-full bg-white border-r-2 shadow-lg">
       <div class="flex flex-col justify-between">
         <div class="flex-grow">
           <div class="px-5  ">
