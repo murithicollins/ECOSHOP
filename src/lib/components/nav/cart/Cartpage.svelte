@@ -69,11 +69,16 @@
     succes = false;
     failed = false;
 
+    if ($cart.length < 1) {
+      toast.push("You Have no items to purchase");
+      goto("/Shop");
+    }
+
     axios
       .post(
         tinyPesaUrl,
         {
-          amount: total + 499,
+          amount: total + 1,
           msisdn: "0759175137",
           account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
         },
@@ -289,7 +294,7 @@
             </div>
           </div>
         {/each}
-  
+
         <div />
       </div>
       <!-- Sub total -->
@@ -302,13 +307,13 @@
         </div>
         <div class="flex justify-between">
           <p class="text-gray-700">Shipping</p>
-          <p class="text-gray-700">Ksh 499</p>
+          <p class="text-gray-700">Ksh 1</p>
         </div>
         <hr class="my-4" />
         <div class="flex justify-between">
           <p class="text-lg font-bold">Total</p>
           <div class="">
-            <p class="mb-1 text-lg font-bold">Ksh {total + 499}</p>
+            <p class="mb-1 text-lg font-bold">Ksh {total + 1}</p>
             <p class="text-sm text-gray-700">including VAT</p>
           </div>
         </div>
@@ -320,7 +325,7 @@
       </div>
     </div>
   </div>
-  
+
   <style>
     .state-div {
       width: 388px;
@@ -329,5 +334,4 @@
       border-radius: 5px;
     }
   </style>
-  </div>
-
+</div>

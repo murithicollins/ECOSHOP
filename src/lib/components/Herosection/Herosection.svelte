@@ -4,7 +4,7 @@
 </script>
 
 <Ruler>
-  <div class="flex mb-20 mt-52 shadow-lg rounded-md">
+  <div class="flex mb-20 shadow-lg rounded-md">
     <div class="w-1/2 p-4 bg-orange-50">
       <div class="my-20 px-11">
         <h1 class="text-lg md:text-5xl font-bold">
