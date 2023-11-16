@@ -36,7 +36,6 @@
       toast.push("You Have no items to purchase");
       goto("/Shop");
     }
-    console.log();
     await fetch(`${baseApiUrl}/api/orders`, {
       method: "POST",
       headers: {
@@ -49,7 +48,7 @@
           items: itemsId,
           status: "COMPLETE",
           paymentStatus: "PAID",
-          totalPrice: total + 499,
+          totalPrice: total + 1,
           moreDetails: $cart,
         },
       }),
