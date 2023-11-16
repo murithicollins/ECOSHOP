@@ -1,4 +1,4 @@
-<div class="ml-24 mt-24 container p-2 mx-auto rounded-md sm:p-4 bg-white shadow-md">
+<div class="md:ml-24 ml-0 md:mt-24 mt-0 container p-2 mx-auto rounded-md sm:p-4 bg-white shadow-md">
 	<h2 class="mb-3 text-2xl font-semibold leadi">Standings</h2>
 	<div class="overflow-x-auto">
 		<table class="min-w-full text-xs">
@@ -7,13 +7,6 @@
 					<th title="Ranking" class="p-3 text-left">#</th>
 					<th title="Team name" class="p-3 text-left">Price</th>
 					<th title="Wins" class="p-3">items</th>
-					<!-- <th title="Losses" class="p-3">L</th>
-					<th title="Win percentage" class="p-3">Win%</th>
-					<th title="Games behind" class="p-3">GB</th>
-					<th title="Home games" class="p-3">Home</th>
-					<th title="Away games" class="p-3">Away</th>
-					<th title="Last 10 games" class="p-3">L10</th>
-					<th title="Current streak" class="p-3">Streak</th> -->
 				</tr>
 			</thead>
 			<tbody>
