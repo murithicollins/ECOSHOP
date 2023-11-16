@@ -3,7 +3,7 @@
 // import BASE_URL
 import Cookies from "js-cookie";
 import { redirect } from "@sveltejs/kit";
-
+//
 const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
 export async function apiFetch(
