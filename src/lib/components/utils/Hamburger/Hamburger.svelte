@@ -1,41 +1,46 @@
+<!-- Hamburger.svelte -->
 <script>
-	export let open = false;
-	import hamburger from "$lib/assets/images/hamburger.png"
-</script>
-
-<button class="text-black md:hidden flex hover:text-gray-700 cursor-pointer mr-4 border-none focus:outline-none" class:open on:click={() => open = !open}>
-	<img src={hamburger} alt="Logo" class="md:h-8 h-6 md:w-8 w-10"/>
-</button>
-
-<style>
-	/* svg {
-		min-height: 24px;
-		transition: transform 0.3s ease-in-out;
+	import { media } from '$app/stores';
+  
+	let isOpen = false;
+  
+	function toggleMenu() {
+	  isOpen = !isOpen;
 	}
-	
-	svg line {
-		stroke: currentColor;
-		stroke-width: 3;
-		transition: transform 0.3s ease-in-out
+  
+	$: isSmallScreen = $media === 'small';
+  </script>
+  
+  <style>
+	/* Tailwind CSS classes */
+	.navbar {
+	  @apply fixed top-8 left-0 right-0 flex justify-between items-center p-4 text-white;
 	}
-	 */
-	button {
-		z-index: 20;
+  
+	.burger-icon {
+	  @apply cursor-pointer text-white;
 	}
-	
-	/* .open svg {
-		transform: scale(0.7)
+  
+	.menu-list {
+	  @apply hidden absolute top-full left-0 bg-white text-black p-4;
 	}
-	
-	.open #top {
-		transform: translate(6px, 0px) rotate(45deg)
+  
+	.menu-list.active {
+	  @apply block;
 	}
-	
-	.open #middle {
-		opacity: 0;
-	}
-	
-  .open #bottom {
-		transform: translate(-12px, 9px) rotate(-45deg)
-	} */
-</style>
+  
+	/* ... other styles remain the same ... */
+  </style>
+  
+  <div class="navbar">
+	<div class="burger-icon" on:click={toggleMenu}>
+	  <!-- ... your existing icon code ... -->
+	</div>
+	<div class={`menu-list ${isOpen ? 'active' : ''}`}>
+	  <!-- Your menu items go here -->
+	  <a href="#">Home</a>
+	  <a href="#">About</a>
+	  <a href="#">Contact</a>
+	</div>
+  </div>
+  

@@ -1,5 +1,5 @@
 <script>
-    import { Order } from "$lib/components";
+    import { Order,Sidebar } from "$lib/components";
 </script>
 
 <Order/>
