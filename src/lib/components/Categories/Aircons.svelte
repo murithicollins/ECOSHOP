@@ -15,7 +15,7 @@
     <h1 class="font-bold text-lg">Buy More Materials</h1>
   </div>
 
-  <div class="flex flex-wrap gap-5 justify-between">
+  <div class="flex flex-wrap gap-5 justify-start">
     {#each $shopitems as product (product.id)}
       <div
         class=" w-[255px] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
