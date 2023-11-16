@@ -19,7 +19,7 @@
     <nav
       class="flex justify-between bg-orange-50 mx-5 md:hidden items-center text-gray-600 border-b-2"
     >
-      <Hamburger bind:open={sidebar} />
+      <Hamburger />
     </nav>
     <!-- logo -->
     <div class="mr-auto md:w-48 flex-shrink-0">
@@ -38,7 +38,7 @@
           <Cart />
         </div>
       </div>
-      <div class="flex gap-4">
+      <div class="">
         <div>
           <Account />
         </div>

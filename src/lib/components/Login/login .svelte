@@ -4,8 +4,6 @@
   import { stringify } from "postcss";
   import { onMount } from "svelte";
 
-  onMount();
-
   let email = "";
   let password = "";
 

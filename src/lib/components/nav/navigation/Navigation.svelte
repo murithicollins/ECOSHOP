@@ -1,7 +1,7 @@
 <script>
     import { TopNav,Sidebar } from "$lib/components";
 
-    let open = false
+    // let open = false
 </script>
 
 <!-- <Sidebar /> -->
