@@ -193,102 +193,97 @@
       <!-- Succes State -->
     </div>
   {/if}
-
-  <h1 class="mb-10 md:ml-96 ml-8 text-2xl font-bold">Cart Items</h1>
-  <div
-    class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
-  >
-    <div class="rounded-lg md:w-2/3">
-      {#each $cart as item (item.item.id)}
-        <div
-          class="justify-between mb-6 rounded-lg items-center bg-white p-6 shadow-md sm:flex sm:justify-start"
-        >
-          <img
-            src={baseApiUrl +
-              item.item.attributes.images.data?.[0].attributes?.url}
-            alt="product-image"
-            class="w-full rounded-lg sm:w-40"
-          />
-          <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-            <div class="mt-5 sm:mt-0">
-              <h2 class=" font-bold w-72 text-gray-900">
-                {item.item.attributes.itemName}
-              </h2>
-            </div>
-            <div class="mt-4 flex gap-8 flex-col justify-end items-end">
-              <div class="flex items-center border-gray-100">
-                <span
-                  on:click={updateQuantity(item.item.id, -1)}
-                  class="cursor-pointer rounded-l bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-400 hover:text-blue-50"
-                >
-                  -
-                </span>
-                <input
-                  class="h-8 w-8 border bg-white text-center outline-none"
-                  bind:value={item.qty}
-                  min="1"
-                />
-                <span
-                  on:click={updateQuantity(item.item.id, 1)}
-                  class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-400 hover:text-blue-50"
-                >
-                  +
-                </span>
+  <div class="mt-24 md:mt-0">
+    <h1 class="mb-10 md:ml-96 ml-8 text-2xl font-bold">Cart Items</h1>
+    <div
+      class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
+    >
+      <div class="rounded-lg md:w-2/3">
+        {#each $cart as item (item.item.id)}
+          <div
+            class="justify-between mb-6 rounded-lg items-center bg-white p-6 shadow-md sm:flex sm:justify-start"
+          >
+            <img
+              src={baseApiUrl +
+                item.item.attributes.images.data?.[0].attributes?.url}
+              alt="product-image"
+              class="w-full rounded-lg sm:w-40"
+            />
+            <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+              <div class="mt-5 sm:mt-0">
+                <h2 class=" font-bold w-72 text-gray-900">
+                  {item.item.attributes.itemName}
+                </h2>
               </div>
-              <div class="flex items-center space-x-4">
-                <p class="text-sm font-semibold">
-                  Price: {item.item.attributes.price * item.qty} Ksh
-                </p>
+              <div class="mt-4 flex gap-8 flex-col justify-end items-end">
+                <div class="flex items-center border-gray-100">
+                  <span
+                    on:click={updateQuantity(item.item.id, -1)}
+                    class="cursor-pointer rounded-l bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-400 hover:text-blue-50"
+                  >
+                    -
+                  </span>
+                  <input
+                    class="h-8 w-8 border bg-white text-center outline-none"
+                    bind:value={item.qty}
+                    min="1"
+                  />
+                  <span
+                    on:click={updateQuantity(item.item.id, 1)}
+                    class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-400 hover:text-blue-50"
+                  >
+                    +
+                  </span>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <p class="text-sm font-semibold">
+                    Price: {item.item.attributes.price * item.qty} Ksh
+                  </p>
+                </div>
+                <div class="test-sm text-red-400 font-semibold">Remove</div>
               </div>
-              <div class="test-sm text-red-400 font-semibold">Remove</div>
             </div>
           </div>
-        </div>
-      {/each}
-
-      <div />
-    </div>
-    <!-- Sub total -->
-    <div
-      class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
-    >
-      <div class="mb-2 flex justify-between">
-        <p class="text-gray-700">Subtotal</p>
-        <p class="text-gray-700">Ksh {total}</p>
+        {/each}
+  
+        <div />
       </div>
-      <div class="flex justify-between">
-        <p class="text-gray-700">Shipping</p>
-        <p class="text-gray-700">Ksh 499</p>
-      </div>
-      <hr class="my-4" />
-      <div class="flex justify-between">
-        <p class="text-lg font-bold">Total</p>
-        <div class="">
-          <p class="mb-1 text-lg font-bold">Ksh {total + 499}</p>
-          <p class="text-sm text-gray-700">including VAT</p>
-        </div>
-      </div>
-      <button
-        on:click|preventDefault={completeOrder}
-        class="mt-6 w-full rounded-md bg-orange-400 py-1.5 font-medium text-blue-50 hover:bg-orange-500"
-        >Check out</button
+      <!-- Sub total -->
+      <div
+        class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
       >
+        <div class="mb-2 flex justify-between">
+          <p class="text-gray-700">Subtotal</p>
+          <p class="text-gray-700">Ksh {total}</p>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-gray-700">Shipping</p>
+          <p class="text-gray-700">Ksh 499</p>
+        </div>
+        <hr class="my-4" />
+        <div class="flex justify-between">
+          <p class="text-lg font-bold">Total</p>
+          <div class="">
+            <p class="mb-1 text-lg font-bold">Ksh {total + 499}</p>
+            <p class="text-sm text-gray-700">including VAT</p>
+          </div>
+        </div>
+        <button
+          on:click|preventDefault={completeOrder}
+          class="mt-6 w-full rounded-md bg-orange-400 py-1.5 font-medium text-blue-50 hover:bg-orange-500"
+          >Check out</button
+        >
+      </div>
     </div>
   </div>
-</div>
-
-<style>
-  /* @layer utilities {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+  
+  <style>
+    .state-div {
+      width: 388px;
+      height: 255px;
+      background-color: white;
+      border-radius: 5px;
     }
-  } */
-  .state-div {
-    width: 388px;
-    height: 255px;
-    background-color: white;
-    border-radius: 5px;
-  }
-</style>
+  </style>
+  </div>
+

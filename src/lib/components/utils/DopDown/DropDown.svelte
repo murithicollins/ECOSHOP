@@ -18,7 +18,7 @@
   <div class="relative mt-6">
     <div class="absolute w-52 right-0 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
         <a href="/Account" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Profile</a>
-        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Orders</a>
+        <a href="/MyOrder" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My Orders</a>
         <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign Out</a>
     </div>
   </div>
