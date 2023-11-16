@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<main class="max-h-screen pt-52 overflow-auto">
+<main class="max-h-screen overflow-auto">
   <div class="px-6 py-8">
     <div class="max-w-4xl mx-auto">
       <div>

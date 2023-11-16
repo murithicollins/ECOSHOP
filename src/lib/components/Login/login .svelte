@@ -1,5 +1,10 @@
 <script>
+  import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
+  import { stringify } from "postcss";
+  import { onMount } from "svelte";
+
+  onMount();
 
   let email = "";
   let password = "";
@@ -24,12 +29,15 @@
         password: password,
       }),
     });
-
+    // sessionStorage.removeItem("user");
     if (response.ok) {
       const { jwt, user } = await response.json();
 
       sessionStorage.setItem("access_token", jwt);
-      sessionStorage.setItem("user", user);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      // console.log(sessionStorage.getItem("user"));
+      toast.push("Login Succesfully");
+      goto("/Shop");
     }
   }
 </script>

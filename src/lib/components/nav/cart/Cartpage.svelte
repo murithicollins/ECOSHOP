@@ -5,6 +5,9 @@
   import { io } from "socket.io-client";
   import { onMount, onDestroy } from "svelte";
   import { cart, updateQuantity, calculateTotal } from "../../../../store/cart";
+  import { redirect } from "@sveltejs/kit";
+  import { goto } from "$app/navigation";
+  import { toast } from "@zerodevx/svelte-toast";
 
   let tinyPesaUrl = "https://tinypesa.com/api/v1/express/initialize";
   let baseApiUrl = import.meta.env.VITE_BASE_URL;
@@ -19,6 +22,46 @@
   onMount(() => {
     request_id = localStorage.getItem("request_id");
   });
+
+  async function createOrder() {
+    const token = sessionStorage.getItem("access_token");
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
+    let itemsId = $cart.map((item) => item.item.id);
+
+    // console.log(user);
+    // console.log(token);
+    if (token === null) goto("/Login");
+    if ($cart.length < 1) {
+      toast.push("You Have no items to purchase");
+      goto("/Shop");
+    }
+    console.log();
+    await fetch(`${baseApiUrl}/api/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        data: {
+          user: user.id,
+          items: itemsId,
+          status: "COMPLETE",
+          paymentStatus: "PAID",
+          totalPrice: total + 499,
+          moreDetails: $cart,
+        },
+      }),
+    });
+    // axios
+    //   .post(`${baseApiUrl}/api/orders`, {
+    //     order,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
+  }
 
   function completeOrder() {
     paymentInitiated = true;
@@ -85,6 +128,7 @@
         loading = false;
         succes = true;
       }
+      createOrder();
       localStorage.clear();
 
       resetConnectionTimeout();

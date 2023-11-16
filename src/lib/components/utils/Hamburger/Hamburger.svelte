@@ -1,6 +1,6 @@
 <!-- Hamburger.svelte -->
 <script>
-  import { media } from "$app/stores";
+  //   import { media } from "$app/stores";
 
   let isOpen = false;
 
@@ -8,7 +8,7 @@
     isOpen = !isOpen;
   }
 
-  $: isSmallScreen = $media === "small";
+  //   $: isSmallScreen = $media === "small";
 </script>
 
 <div class="navbar">

@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
 
   let firstname = "";
@@ -42,6 +43,8 @@
 
       sessionStorage.setItem("access_token", jwt);
       sessionStorage.setItem("user", user);
+      toast.push("Account Created Succesfully");
+      goto("/Shop");
     }
   }
 </script>
