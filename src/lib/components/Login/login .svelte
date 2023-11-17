@@ -13,29 +13,38 @@
     }
     if (password === "") {
       toast.push("password is required");
-    }
+    } else {
+      const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
-    const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
+      const response = await fetch(`${API_BASE_URL}/api/auth/local`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          identifier: email,
+          password: password,
+        }),
+      });
+      // sessionStorage.removeItem("user");
+      if (response.ok) {
+        const { jwt, user } = await response.json();
 
-    const response = await fetch(`${API_BASE_URL}/api/auth/local`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        identifier: email,
-        password: password,
-      }),
-    });
-    // sessionStorage.removeItem("user");
-    if (response.ok) {
-      const { jwt, user } = await response.json();
-
-      sessionStorage.setItem("access_token", jwt);
-      sessionStorage.setItem("user", JSON.stringify(user));
-      // console.log(sessionStorage.getItem("user"));
-      toast.push("Login Succesfully");
-      goto("/Shop");
+        sessionStorage.setItem("access_token", jwt);
+        sessionStorage.setItem("user", JSON.stringify(user));
+        // console.log(sessionStorage.getItem("user"));
+        toast.push("Login Succesfully");
+        goto("/Shop");
+      } else {
+        const { error } = await response.json();
+        toast.push(error.message, {
+          theme: {
+            "--toastBackground": "red",
+            "--toastColor": "white",
+            "--toastBarBackground": "red",
+          },
+        });
+      }
     }
   }
 </script>
@@ -107,10 +116,10 @@
           class="w-full text-white bg-orange-400 font-medium rounded text-sm px-5 py-2.5 text-center"
           on:click={login}>Sign in</button
         >
-        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+        <p class="text-sm font-light text-gray-600">
           Don’t have an account yet? <a
             href="/Signup"
-            class="font-medium text-black hover:underline dark:text-primary-500"
+            class="font-medium text-gray-800 hover:underline dark:text-primary-500"
             >Sign up</a
           >
         </p>

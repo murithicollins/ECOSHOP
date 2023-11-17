@@ -1,4 +1,5 @@
 <script>
-    import { Cartpage } from "$lib/components";
+  import { Cartpage } from "$lib/components";
 </script>
-<Cartpage/>
+
+<Cartpage />
