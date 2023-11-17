@@ -41,7 +41,7 @@
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: {
+      body: JSON.stringify({
         data: {
           user: user.id,
           items: itemsId,
@@ -50,7 +50,7 @@
           totalPrice: total + 1,
           moreDetails: $cart,
         },
-      },
+      }),
     });
     // axios
     //   .post(`${baseApiUrl}/api/orders`, {
@@ -170,6 +170,7 @@
   function closeSucces() {
     paymentInitiated = false;
     succes = false;
+    goto("/Shop");
   }
 </script>
 
