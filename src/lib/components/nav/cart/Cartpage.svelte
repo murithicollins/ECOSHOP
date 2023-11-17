@@ -23,10 +23,9 @@
     request_id = localStorage.getItem("request_id");
   });
   const token = sessionStorage.getItem("access_token");
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   async function createOrder() {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-
     let itemsId = $cart.map((item) => item.item.id);
 
     // console.log(user);
@@ -81,7 +80,7 @@
             tinyPesaUrl,
             {
               amount: total + 1,
-              msisdn: "0759175137",
+              msisdn: user.phone,
               account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
             },
             {
