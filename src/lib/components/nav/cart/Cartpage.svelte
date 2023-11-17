@@ -41,7 +41,7 @@
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
+      body: {
         data: {
           user: user.id,
           items: itemsId,
@@ -50,7 +50,7 @@
           totalPrice: total + 1,
           moreDetails: $cart,
         },
-      }),
+      },
     });
     // axios
     //   .post(`${baseApiUrl}/api/orders`, {
