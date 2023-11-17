@@ -136,6 +136,8 @@
           }
           createOrder();
           localStorage.clear();
+          goto("/Shop");
+          cart.set([]);
 
           resetConnectionTimeout();
         });
