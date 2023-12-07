@@ -106,7 +106,7 @@
           reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
         });
         socket.on("connect", () => {
-          console.log("Connected to the server");
+          // console.log("Connected to the server");
           resetConnectionTimeout(); // Start the connection timeout timer
         });
 
@@ -124,7 +124,7 @@
         }
 
         socket.on("connect", () => {
-          console.log("Connected to the server");
+          // console.log("Connected to the server");
           resetConnectionTimeout(); // Start the connection timeout timer
         });
         socket.on("completedTrasaction", (data) => {

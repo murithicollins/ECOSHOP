@@ -16,7 +16,7 @@
     } else {
       const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
-      const response = await fetch(`${API_BASE_URL}/api/auth/local`, {
+      const response = await fetch(`${API_BASE_URL}user/custom-auth`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@
       <form class="space-y-4 md:space-y-6">
         <div>
           <label for="email" class="block mb-2 text-sm font-medium text-black"
-            >Your email</label
+            >Your email or phone</label
           >
           <input
             bind:value={email}
@@ -72,7 +72,7 @@
             name="email"
             id="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:outline-none rounded block w-full p-2.5"
-            placeholder="name@company.com"
+            placeholder="name@company.com or 07********"
             required
           />
         </div>
