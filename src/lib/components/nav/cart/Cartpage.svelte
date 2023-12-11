@@ -19,10 +19,13 @@
   let request_id;
   $: total = $calculateTotal;
 
+  const token = sessionStorage.getItem("access_token");
+  console.log(token);
   onMount(() => {
     request_id = localStorage.getItem("request_id");
   });
-  const token = sessionStorage.getItem("access_token");
+
+  // console.log(token);
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   async function createOrder() {
