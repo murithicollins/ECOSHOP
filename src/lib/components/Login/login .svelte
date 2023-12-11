@@ -16,7 +16,7 @@
     } else {
       const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
-      const response = await fetch(`${API_BASE_URL}user/custom-auth`, {
+      const response = await fetch(`${API_BASE_URL}/api/user/custom-auth`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +36,10 @@
         toast.push("Login Succesfully");
         goto("/Shop");
       } else {
-        const { error } = await response.json();
-        toast.push(error.message, {
+        const { message } = await response.json();
+        console.log(response.json());
+
+        toast.push(message, {
           theme: {
             "--toastBackground": "red",
             "--toastColor": "white",
@@ -68,7 +70,7 @@
           >
           <input
             bind:value={email}
-            type="email"
+            type="text"
             name="email"
             id="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:outline-none rounded block w-full p-2.5"
