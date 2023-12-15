@@ -19,7 +19,7 @@
     <nav
       class="flex justify-between bg-orange-50 mx-5 md:hidden items-center text-gray-600 border-b-2"
     >
-      <Hamburger />
+      <!-- <Hamburger /> -->
     </nav>
     <!-- logo -->
     <div class="mr-auto md:w-48 flex-shrink-0">
