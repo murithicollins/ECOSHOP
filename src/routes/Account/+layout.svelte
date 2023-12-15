@@ -8,7 +8,7 @@
 
 <div class="">
   <Ruler>
-    <div class="flex gap-11">
+    <div class="flex md:gap-11 gap-2">
       <Sidebar />
       <slot />
     </div>
