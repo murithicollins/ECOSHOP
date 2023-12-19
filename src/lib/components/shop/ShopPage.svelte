@@ -2,6 +2,6 @@
   import { Aircons } from "$lib/components";
 </script>
 
-<div class="pt-52">
+<div class="pt-16">
   <Aircons />
 </div>
