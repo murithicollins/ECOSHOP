@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { Ruler } from '$lib/components';
     import { createEventDispatcher } from 'svelte';
 
@@ -18,4 +18,4 @@
             Show Filters
         </button>
     </div>
-</Ruler>
+</Ruler> -->

@@ -24,7 +24,7 @@ export const handle = handleSession(
     if (token) {
       let user = await fetchUserData(token);
       if (user) {
-        console.log(user);
+        // console.log(user);
         await event.locals.session.set({ accessToken: token, user: user });
       } else {
         token = "";
@@ -32,7 +32,7 @@ export const handle = handleSession(
     }
     console.log(event.url.pathname);
     if (event.url.pathname === "/Account") {
-      console.log("hook hook");
+      // console.log("hook hook");
     }
     if (
       protectedRoutesPatterns.some((pattern) =>
