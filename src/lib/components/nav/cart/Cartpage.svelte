@@ -186,9 +186,7 @@
   <!-- state modals -->
   {#if paymentInitiated}
     <div class="w-full">
-      <div
-        class="w-full h-full min-h-screen absolute bg-slate-700 opacity-30"
-      />
+      <div class="w-full h-full min-h-screen fixed bg-slate-700 opacity-30" />
       <!-- Waiting State -->
       <div class="state-div z-30 relative top-36 mx-auto">
         {#if loading}
