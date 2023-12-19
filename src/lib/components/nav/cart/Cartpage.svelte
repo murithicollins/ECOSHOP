@@ -4,7 +4,12 @@
   import axios from "axios";
   import { io } from "socket.io-client";
   import { onMount, onDestroy } from "svelte";
-  import { cart, updateQuantity, calculateTotal } from "../../../../store/cart";
+  import {
+    cart,
+    updateQuantity,
+    calculateTotal,
+    removeToCart,
+  } from "../../../../store/cart";
   import { redirect } from "@sveltejs/kit";
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
@@ -19,14 +24,14 @@
   let request_id;
   $: total = $calculateTotal;
 
-  const token = sessionStorage.getItem("access_token");
-  console.log(token);
   onMount(() => {
-    request_id = localStorage.getItem("request_id");
+    request_id = localStorage?.getItem("request_id");
   });
+  const token = sessionStorage ? sessionStorage.getItem("access_token") : "";
+  // console.log(token);
 
   // console.log(token);
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage?.getItem("user"));
 
   async function createOrder() {
     let itemsId = $cart.map((item) => item.item.id);
@@ -109,7 +114,7 @@
           reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
         });
         socket.on("connect", () => {
-          // console.log("Connected to the server");
+          console.log("Connected to the server");
           resetConnectionTimeout(); // Start the connection timeout timer
         });
 
@@ -181,9 +186,7 @@
   <!-- state modals -->
   {#if paymentInitiated}
     <div class="w-full">
-      <div
-        class="w-full h-full min-h-screen absolute bg-slate-700 opacity-30"
-      />
+      <div class="w-full h-full min-h-screen fixed bg-slate-700 opacity-30" />
       <!-- Waiting State -->
       <div class="state-div z-30 relative top-36 mx-auto">
         {#if loading}
@@ -298,7 +301,12 @@
                     Price: {item.item.attributes.price * item.qty} Ksh
                   </p>
                 </div>
-                <div class="test-sm text-red-400 font-semibold">Remove</div>
+                <button
+                  on:click={() => {
+                    removeToCart(item.item.id);
+                  }}
+                  class="test-sm text-red-400 font-semibold">Remove</button
+                >
               </div>
             </div>
           </div>

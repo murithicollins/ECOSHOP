@@ -11,6 +11,13 @@ export const addToCart = (item) => {
   // console.log(item);
 };
 
+export const removeToCart = (itemId) => {
+  cart.update((cartItems) =>
+    cartItems.filter((item) => item.item.id !== itemId)
+  );
+  // console.log(item);
+};
+
 export const updateQuantity = (itemId, quantityChange) => {
   cart.update((cartItems) => {
     // Find the item in the cart
