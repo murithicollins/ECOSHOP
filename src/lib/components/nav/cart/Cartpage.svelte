@@ -20,7 +20,7 @@
   $: total = $calculateTotal;
 
   const token = sessionStorage.getItem("access_token");
-  console.log(token);
+//  console.log(token);
   onMount(() => {
     request_id = localStorage.getItem("request_id");
   });

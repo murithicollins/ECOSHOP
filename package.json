@@ -26,6 +26,7 @@
 	"type": "module",
 	"dependencies": {
 		"axios": "^1.6.0",
+		"dotenv": "^16.3.1",
 		"flowbite-svelte": "^0.44.18",
 		"js-cookie": "^3.0.5",
 		"socket.io-client": "^4.7.2",
