@@ -4,7 +4,12 @@
   import axios from "axios";
   import { io } from "socket.io-client";
   import { onMount, onDestroy } from "svelte";
-  import { cart, updateQuantity, calculateTotal } from "../../../../store/cart";
+  import {
+    cart,
+    updateQuantity,
+    calculateTotal,
+    removeToCart,
+  } from "../../../../store/cart";
   import { redirect } from "@sveltejs/kit";
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
@@ -19,14 +24,14 @@
   let request_id;
   $: total = $calculateTotal;
 
-  const token = sessionStorage.getItem("access_token");
-  console.log(token);
   onMount(() => {
-    request_id = localStorage.getItem("request_id");
+    request_id = localStorage?.getItem("request_id");
   });
+  const token = sessionStorage ? sessionStorage.getItem("access_token") : "";
+  // console.log(token);
 
   // console.log(token);
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage?.getItem("user"));
 
   async function createOrder() {
     let itemsId = $cart.map((item) => item.item.id);
@@ -298,7 +303,12 @@
                     Price: {item.item.attributes.price * item.qty} Ksh
                   </p>
                 </div>
-                <div class="test-sm text-red-400 font-semibold">Remove</div>
+                <button
+                  on:click={() => {
+                    removeToCart(item.item.id);
+                  }}
+                  class="test-sm text-red-400 font-semibold">Remove</button
+                >
               </div>
             </div>
           </div>
