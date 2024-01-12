@@ -1,9 +1,12 @@
 <script>
+  // @ts-nocheck
+
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
 
   let firstname = "";
   let secondname = "";
+  let username = "";
   let email = "";
   let phone = "";
   let password = "";
@@ -11,16 +14,24 @@
   async function register() {
     if (email === "") {
       toast.push("email is required");
+      return;
       //   alert("email is required");
     }
     if (password === "") {
       toast.push("password is required");
+      return;
     }
     if (firstname === "") {
       toast.push("firstname is required");
+      return;
+    }
+    if (username === "") {
+      toast.push("firstname is required");
+      return;
     }
     if (phone === "") {
       toast.push("phone is required");
+      return;
     }
 
     const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
@@ -31,7 +42,8 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: firstname + " " + secondname,
+        username: username,
+        fullNames: firstname + " " + secondname,
         email: email,
         phone: phone,
         password: password,
@@ -45,6 +57,30 @@
       sessionStorage.setItem("user", user);
       toast.push("Account Created Succesfully");
       goto("/Shop");
+    } else {
+      const { error } = await response.json();
+      // console.log(error);
+      if (error.details.errors.length > 0) {
+        error.details.errors.forEach((err) => {
+          toast.push(err.message, {
+            theme: {
+              "--toastBackground": "red",
+              "--toastColor": "white",
+              "--toastBarBackground": "red",
+            },
+          });
+        });
+        return;
+      } else {
+        toast.push(error.message, {
+          theme: {
+            "--toastBackground": "red",
+            "--toastColor": "white",
+            "--toastBarBackground": "red",
+          },
+        });
+        return;
+      }
     }
   }
 </script>
@@ -97,6 +133,22 @@
                   type="text"
                   class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Smith"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+              <label for="" class="text-xs font-semibold px-1">Username</label>
+              <div class="flex">
+                <div
+                  class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                ></div>
+                <input
+                  bind:value={username}
+                  type="email"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  placeholder="username"
                 />
               </div>
             </div>
