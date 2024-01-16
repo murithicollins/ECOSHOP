@@ -30,7 +30,7 @@ export const handle = handleSession(
         token = "";
       }
     }
-    console.log(event.url.pathname);
+    // console.log(event.url.pathname);
     if (event.url.pathname === "/Account") {
       // console.log("hook hook");
     }

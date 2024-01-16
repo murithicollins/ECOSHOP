@@ -13,6 +13,33 @@
   import { redirect } from "@sveltejs/kit";
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
+  import MpesaPay from "mpesapay";
+
+  const Consumer_Key = "7Q3lMLM8hzapoBnkHLtAQ4wqbf9SRlNy";
+  const Consumer_Secret = "OajdHGMwvKjDALXE";
+  const Business_Short_Code = "247247";
+  const Passkey = "YOUR_PASS_KEY";
+  const Transaction_Description = "YOUR_TRANSACTION_DESCRIPTION";
+  const Account_Reference = "YOUR_ACCOUNT_REFERENCE";
+  const PartyA = "YOUR_MPESA_PARTYA";
+  const B2C_Security_Credential = "YOUR MPESA B2C SECURITY CREDENTIAL";
+  const Initiator_Name = "YOUR MPESA INITIATORS NAME";
+  const Environment = "THE ENVIRONMENT i.e sandbox or live";
+  const Transaction_Type = "YOUR SHORTCODE TYPE i.e paybill or till";
+
+  const mpesapay = new MpesaPay(
+    Consumer_Key,
+    Consumer_Secret,
+    Business_Short_Code,
+    Passkey,
+    Account_Reference,
+    Transaction_Description,
+    PartyA,
+    B2C_Security_Credential,
+    Initiator_Name,
+    Environment,
+    Transaction_Type
+  );
 
   let tinyPesaUrl = "https://tinypesa.com/api/v1/express/initialize";
   let baseApiUrl = import.meta.env.VITE_BASE_URL;
@@ -23,7 +50,6 @@
   let failed = false;
   let request_id;
   $: total = $calculateTotal;
-
 
   onMount(() => {
     request_id = localStorage?.getItem("request_id");
