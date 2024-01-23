@@ -292,15 +292,14 @@
             class="justify-between mb-6 rounded-lg items-center bg-white p-6 shadow-md sm:flex sm:justify-start"
           >
             <img
-              src={baseApiUrl +
-                item.item.attributes.images.data?.[0].attributes?.url}
+              src={item.item.product_images[0]?.image_data.file}
               alt="product-image"
               class="w-full rounded-lg sm:w-40"
             />
             <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
               <div class="mt-5 sm:mt-0">
                 <h2 class=" font-bold w-72 text-gray-900">
-                  {item.item.attributes.itemName}
+                  {item.item.name}
                 </h2>
               </div>
               <div class="mt-4 flex gap-8 flex-col justify-end items-end">
@@ -325,7 +324,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
                   <p class="text-sm font-semibold">
-                    Price: {item.item.attributes.price * item.qty} Ksh
+                    Price: {item.item.price * item.qty} Ksh
                   </p>
                 </div>
                 <button

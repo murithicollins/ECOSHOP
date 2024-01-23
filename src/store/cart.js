@@ -43,7 +43,7 @@ export const calculateTotal = derived(
     let total = 0;
 
     $cart.forEach((item) => {
-      total += item.item.attributes.price * item.qty;
+      total += item.item.price * item.qty;
     });
 
     set(total);
