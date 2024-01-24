@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
   import { stringify } from "postcss";
@@ -6,6 +8,7 @@
 
   let email = "";
   let password = "";
+  export let business;
 
   async function login() {
     if (email === "") {
@@ -32,6 +35,7 @@
 
         sessionStorage.setItem("access_token", jwt);
         sessionStorage.setItem("user", JSON.stringify(user));
+        loginUzakitu();
         // console.log(sessionStorage.getItem("user"));
         toast.push("Login Succesfully");
         goto("/Shop");
@@ -47,6 +51,33 @@
           },
         });
       }
+    }
+  }
+
+  async function loginUzakitu() {
+    const API_BASE_URL = import.meta.env.VITE_BASE_URL_2; // Replace with your actual API base URL
+
+    const response = await fetch(`${API_BASE_URL}/customer-token/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        business: business,
+      }),
+    });
+
+    if (response.ok) {
+      const json = await response.json();
+      console.log(json);
+      sessionStorage.setItem("access", json.access);
+      // sessionStorage.setItem("user", JSON.stringify(user));
+      // console.log(sessionStorage.getItem("user"));
+    } else {
+      const json = await response.json();
+      console.log(json);
     }
   }
 </script>

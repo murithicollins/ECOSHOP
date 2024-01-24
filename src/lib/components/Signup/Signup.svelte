@@ -10,6 +10,7 @@
   let email = "";
   let phone = "";
   let password = "";
+  export let business;
 
   async function register() {
     if (email === "") {
@@ -55,6 +56,7 @@
 
       sessionStorage.setItem("access_token", jwt);
       sessionStorage.setItem("user", user);
+      registerUzakitu();
       toast.push("Account Created Succesfully");
       goto("/Shop");
     } else {
@@ -82,6 +84,24 @@
         return;
       }
     }
+  }
+  async function registerUzakitu() {
+    const API_BASE_URL = import.meta.env.VITE_BASE_URL_2; // Replace with your actual API base URL
+
+    const response = await fetch(`${API_BASE_URL}/customer/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // username: username,
+        // fullNames: firstname + " " + secondname,
+        email: email,
+        // phone: phone,
+        password: password,
+        business: business,
+      }),
+    });
   }
 </script>
 

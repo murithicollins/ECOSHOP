@@ -1,4 +1,7 @@
 <script>
-    import { Signup } from "$lib/components";
+  import { Signup } from "$lib/components";
+  import { page } from "$app/stores";
+  const business = $page.data.business.business;
 </script>
-<Signup/>
+
+<Signup business={business.id} />
