@@ -4,13 +4,11 @@
   let isSmallScreen = false;
   let isSearchOpen = false;
 
-  // A custom media query function
   function checkScreenSize() {
-    isSmallScreen = window.innerWidth < 640; // Adjust the width as needed
+    isSmallScreen = window.innerWidth < 640;
   }
 
   onMount(() => {
-    // Call the custom media query function on initial load and when the window is resized
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
   });
@@ -64,3 +62,6 @@
     />
   {/if}
 </div>
+
+
+

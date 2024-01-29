@@ -10,7 +10,7 @@ import logo from '$lib/assets/images/logo.png'
     </div>
     <div class="my-2">
         <a href="/">
-            <h1 class="md:font-bold font-semibold md:text-xl text-lg">E-commerce</h1>
+            <h1 class="md:font-bold font-semibold md:text-xl text-lg">laxton</h1>
         </a>
     </div>
 </div>
