@@ -71,7 +71,7 @@
 
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       sessionStorage.setItem("access", json.access);
       // sessionStorage.setItem("user", JSON.stringify(user));
       // console.log(sessionStorage.getItem("user"));
