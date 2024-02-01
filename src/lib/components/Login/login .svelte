@@ -3,6 +3,7 @@
   import { toast } from "@zerodevx/svelte-toast";
   import { stringify } from "postcss";
   import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   let email = "";
   let password = "";
@@ -10,13 +11,15 @@
   async function login() {
     if (email === "") {
       toast.push("email is required");
+      return;
     }
     if (password === "") {
       toast.push("password is required");
+      return;
     } else {
       const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
-      const response = await fetch(`${API_BASE_URL}/api/user/custom-auth`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/local`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,8 +33,11 @@
       if (response.ok) {
         const { jwt, user } = await response.json();
 
-        sessionStorage.setItem("access_token", jwt);
-        sessionStorage.setItem("user", JSON.stringify(user));
+        if (browser) {
+          sessionStorage.setItem("access_token", jwt);
+          sessionStorage.setItem("user", JSON.stringify(user));
+        }
+
         // console.log(sessionStorage.getItem("user"));
         toast.push("Login Succesfully");
         goto("/Shop");

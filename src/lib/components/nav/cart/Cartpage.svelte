@@ -13,6 +13,8 @@
   import { redirect } from "@sveltejs/kit";
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
+  import { browser } from "$app/environment";
+  import socket from "socket.io-client";
 
   let tinyPesaUrl = "https://tinypesa.com/api/v1/express/initialize";
   let baseApiUrl = import.meta.env.VITE_BASE_URL;
@@ -24,21 +26,25 @@
   let request_id;
   $: total = $calculateTotal;
 
-
   onMount(() => {
     request_id = localStorage?.getItem("request_id");
   });
-  const token = sessionStorage ? sessionStorage.getItem("access_token") : "";
-  // console.log(token);
+  let token;
+  if (browser) {
+    token = sessionStorage.getItem("access_token");
+  }
 
   // console.log(token);
-  const user = JSON.parse(sessionStorage?.getItem("user"));
+
+  console.log("cart", $cart);
+  let user;
+  if (browser) {
+    user = JSON.parse(sessionStorage?.getItem("user"));
+  }
 
   async function createOrder() {
     let itemsId = $cart.map((item) => item.item.id);
 
-    // console.log(user);
-    // console.log(token);
     if (token === null) goto("/Login");
     if ($cart.length < 1) {
       toast.push("You Have no items to purchase");
@@ -61,13 +67,6 @@
         },
       }),
     });
-    // axios
-    //   .post(`${baseApiUrl}/api/orders`, {
-    //     order,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
   }
 
   function completeOrder() {
@@ -86,22 +85,24 @@
 
         axios
           .post(
-            tinyPesaUrl,
+            `${baseApiUrl}/api/tinypesa/stk-push`,
             {
               amount: total + 1,
               msisdn: user.phone,
-              account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
+              // account_no: import.meta.env.VITE_TINYPESA_ACCOUT_NO,
             },
             {
               headers: {
-                ApiKey: import.meta.env.VITE_TINYPESA_API_KEY,
-                "Content-Type": "application/x-www-form-urlencoded",
+                Authorization: `Bearer ${token}`,
+                // "Content-Type": "application/x-www-form-urlencoded",
               },
             }
           )
           .then((res) => {
             // console.log(res);
-            localStorage.setItem("request_id", res.data.request_id);
+            if (browser) {
+              localStorage.setItem("request_id", res.data.request_id);
+            }
             // request_id = res.data.request_id;
           })
           .catch((err) => {
@@ -114,9 +115,13 @@
           reconnectionAttempts: 10, // Number of reconnection attempts
           reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
         });
+
         socket.on("connect", () => {
           console.log("Connected to the server");
           resetConnectionTimeout(); // Start the connection timeout timer
+        });
+        socket.on("success", (data) => {
+          console.log(data);
         });
 
         const connectionTimeout = 60000; // 10 minutes (in milliseconds)
@@ -261,9 +266,10 @@
       class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
     >
       <div class="rounded-lg md:w-2/3">
-        {#each $cart as item (item.item.id)}
+        {#each $cart as item, i}
           <div
             class="justify-between mb-6 rounded-lg items-center bg-white p-6 shadow-md sm:flex sm:justify-start"
+            id={i}
           >
             <img
               src={baseApiUrl +
