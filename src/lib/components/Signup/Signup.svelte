@@ -4,9 +4,9 @@
   import { goto } from "$app/navigation";
   import { toast } from "@zerodevx/svelte-toast";
 
-  let firstname = "";
-  let secondname = "";
-  let username = "";
+  // let firstname = "";
+  // let secondname = "";
+  // let username = "";
   let email = "";
   let phone = "";
   let password = "";
@@ -15,7 +15,6 @@
     if (email === "") {
       toast.push("email is required");
       return;
-      //   alert("email is required");
     }
     if (phone === "") {
       toast.push("phone is required");
@@ -34,7 +33,7 @@
     //   return;
     // }
 
-    const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
+    const API_BASE_URL = import.meta.env.VITE_BASE_URL; 
 
     const response = await fetch(`${API_BASE_URL}/api/auth/local/register`, {
       method: "POST",
