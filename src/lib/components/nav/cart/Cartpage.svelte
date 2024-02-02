@@ -62,7 +62,7 @@
     token = sessionStorage.getItem("access_token");
   }
 
-  let io = socket("http://localhost:1337");
+  let io = socket(baseApiUrl);
 
   // console.log(token);
 
