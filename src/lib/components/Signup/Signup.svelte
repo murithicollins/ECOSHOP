@@ -17,22 +17,22 @@
       return;
       //   alert("email is required");
     }
-    if (password === "") {
-      toast.push("password is required");
-      return;
-    }
-    if (firstname === "") {
-      toast.push("firstname is required");
-      return;
-    }
-    if (username === "") {
-      toast.push("firstname is required");
-      return;
-    }
     if (phone === "") {
       toast.push("phone is required");
       return;
     }
+    if (password === "") {
+      toast.push("password is required");
+      return;
+    }
+    // if (firstname === "") {
+    //   toast.push("firstname is required");
+    //   return;
+    // }
+    // if (username === "") {
+    //   toast.push("firstname is required");
+    //   return;
+    // }
 
     const API_BASE_URL = import.meta.env.VITE_BASE_URL; // Replace with your actual API base URL
 
@@ -42,8 +42,8 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username,
-        fullNames: firstname + " " + secondname,
+        // username: username,
+        // fullNames: firstname + " " + secondname,
         email: email,
         phone: phone,
         password: password,
@@ -102,7 +102,7 @@
           <p>Enter your information to register</p>
         </div>
         <div>
-          <div class="flex -mx-3">
+          <!-- <div class="flex -mx-3">
             <div class="w-1/2 px-3 mb-5">
               <label for="" class="text-xs font-semibold px-1">First name</label
               >
@@ -136,8 +136,8 @@
                 />
               </div>
             </div>
-          </div>
-          <div class="flex -mx-3">
+          </div> -->
+          <!-- <div class="flex -mx-3">
             <div class="w-full px-3 mb-5">
               <label for="" class="text-xs font-semibold px-1">Username</label>
               <div class="flex">
@@ -152,7 +152,7 @@
                 />
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="flex -mx-3">
             <div class="w-full px-3 mb-5">
               <label for="" class="text-xs font-semibold px-1">Email</label>
