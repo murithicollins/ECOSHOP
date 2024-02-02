@@ -2,7 +2,7 @@
   // @ts-nocheck
 
   import axios from "axios";
-  import { io } from "socket.io-client";
+  // import { io } from "socket.io-client";
   import { onMount, onDestroy } from "svelte";
   import {
     cart,
@@ -24,15 +24,45 @@
   let succes = false;
   let failed = false;
   let request_id;
+
+  const connectionTimeout = 60000; // 10 minutes (in milliseconds)
+  let timeoutId;
   $: total = $calculateTotal;
 
   onMount(() => {
     request_id = localStorage?.getItem("request_id");
+    io.on("connect", () => {
+      console.log("Connected to the server");
+      resetConnectionTimeout(); // Start the connection timeout timer
+    });
+    io.on("confirmTinypesa", (data) => {
+      console.log(data);
+      if (data === true) {
+        toast.push("Successful Transaction");
+        succes = true;
+      } else {
+        toast.push("Failed Transaction");
+        failed = true;
+      }
+      loading = false;
+    });
   });
+
+  function handleConnectionTimeout() {
+    // Perform actions when the connection times out
+    // console.log("Connection timed out due to inactivity.");
+    io.disconnect(); // Close the connection
+  }
+  function resetConnectionTimeout() {
+    clearTimeout(timeoutId); // Clear the previous timeout (if any)
+    timeoutId = setTimeout(handleConnectionTimeout, connectionTimeout); // Set a new timeout
+  }
   let token;
   if (browser) {
     token = sessionStorage.getItem("access_token");
   }
+
+  let io = socket("http://localhost:1337");
 
   // console.log(token);
 
@@ -109,74 +139,64 @@
             console.log(err);
           });
 
-        // initiate a transaction using tinypesa
-        const socket = io(import.meta.env.VITE_BASE_URL, {
-          reconnection: true, // Enable reconnection
-          reconnectionAttempts: 10, // Number of reconnection attempts
-          reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
-        });
+        //   // initiate a transaction using tinypesa
+        //   const socket = io(import.meta.env.VITE_BASE_URL, {
+        //     reconnection: true, // Enable reconnection
+        //     reconnectionAttempts: 10, // Number of reconnection attempts
+        //     reconnectionDelay: 1000, // Delay between reconnection attempts (in milliseconds)
+        //   });
 
-        socket.on("connect", () => {
-          console.log("Connected to the server");
-          resetConnectionTimeout(); // Start the connection timeout timer
-        });
-        socket.on("success", (data) => {
-          console.log(data);
-        });
+        //   socket.on("connect", () => {
+        //     console.log("Connected to the server");
+        //     resetConnectionTimeout(); // Start the connection timeout timer
+        //   });
+        //   socket.on("confirmTinypesa", (data) => {
+        //     console.log(data);
+        //   });
 
-        const connectionTimeout = 60000; // 10 minutes (in milliseconds)
-        let timeoutId;
+        //   const connectionTimeout = 60000; // 10 minutes (in milliseconds)
+        //   let timeoutId;
 
-        function handleConnectionTimeout() {
-          // Perform actions when the connection times out
-          // console.log("Connection timed out due to inactivity.");
-          socket.disconnect(); // Close the connection
-        }
-        function resetConnectionTimeout() {
-          clearTimeout(timeoutId); // Clear the previous timeout (if any)
-          timeoutId = setTimeout(handleConnectionTimeout, connectionTimeout); // Set a new timeout
-        }
+        //   socket.on("connect", () => {
+        //     // console.log("Connected to the server");
+        //     resetConnectionTimeout(); // Start the connection timeout timer
+        //   });
+        //   socket.on("completedTrasaction", (data) => {
+        //     // console.log(data);
+        //     if (data.request_id === localStorage.getItem("request_id")) {
+        //       // alert("Transaction Completed");
+        //       loading = false;
+        //       succes = true;
+        //     }
+        //     createOrder();
+        //     localStorage.clear();
+        //     goto("/Shop");
+        //     cart.set([]);
 
-        socket.on("connect", () => {
-          // console.log("Connected to the server");
-          resetConnectionTimeout(); // Start the connection timeout timer
-        });
-        socket.on("completedTrasaction", (data) => {
-          // console.log(data);
-          if (data.request_id === localStorage.getItem("request_id")) {
-            // alert("Transaction Completed");
-            loading = false;
-            succes = true;
-          }
-          createOrder();
-          localStorage.clear();
-          goto("/Shop");
-          cart.set([]);
+        //     resetConnectionTimeout();
+        //   });
+        //   socket.on("failedTransaction", (data) => {
+        //     // console.log(data);
+        //     if (data.request_id === localStorage.getItem("request_id")) {
+        //       // alert("Transaction Failed");
+        //       loading = false;
+        //       failed = true;
+        //     }
+        //     localStorage.clear();
 
-          resetConnectionTimeout();
-        });
-        socket.on("failedTransaction", (data) => {
-          // console.log(data);
-          if (data.request_id === localStorage.getItem("request_id")) {
-            // alert("Transaction Failed");
-            loading = false;
-            failed = true;
-          }
-          localStorage.clear();
+        //     resetConnectionTimeout();
+        //   });
 
-          resetConnectionTimeout();
-        });
+        //   socket.on("disconnect", (reason) => {
+        //     // console.log(`Disconnected from the server. Reason: ${reason}`);
+        //     clearTimeout(timeoutId); // Clear the timeout when the connection is closed
+        //   });
 
-        socket.on("disconnect", (reason) => {
-          // console.log(`Disconnected from the server. Reason: ${reason}`);
-          clearTimeout(timeoutId); // Clear the timeout when the connection is closed
-        });
-
-        onDestroy(() => {
-          if (socket) {
-            socket.close();
-          }
-        });
+        //   onDestroy(() => {
+        //     if (socket) {
+        //       socket.close();
+        //     }
+        //   });
       }
     }
   }
