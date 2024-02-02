@@ -116,8 +116,7 @@
           <a
             href="#"
             class="text-sm font-medium text-primary-600 hover:underline"
-            >Forgot password?</a
-          >
+            >Forgot password?</a>
         </div>
         <button
           type="submit"
