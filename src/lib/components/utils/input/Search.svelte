@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import { onMount } from "svelte";
 
   let isSmallScreen = false;
@@ -64,4 +64,4 @@
 </div>
 
 
-
+ -->
